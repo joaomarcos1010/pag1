@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Tarefas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eef2f3;
+    }
+    header {
+      background-color: #34495e;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    main {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
+      width: calc(100% - 20px);
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+    }
+    button:hover {
+      background-color: #27ae60;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    li {
+      padding: 10px;
+      margin-bottom: 8px;
+      background-color: #f4f4f4;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    li span {
+      flex-grow: 1;
+    }
+    li button {
+      background-color: #e74c3c;
+      width: auto;
+      padding: 5px 10px;
+    }
+    li button:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Minha Lista de Tarefas</h1>
+  </header>
+
+  <main>
+    <h2>Adicionar Nova Tarefa</h2>
+    <input type="text" id="novaTarefa" placeholder="Digite uma tarefa...">
+    <button onclick="adicionarTarefa()">Adicionar</button>
+
+    <h2>Tarefas</h2>
+    <ul id="listaTarefas">
+      <!-- Tarefas aparecerão aqui -->
+    </ul>
+  </main>
+
+  <script>
+    function adicionarTarefa() {
+      const input = document.getElementById("novaTarefa");
+      const texto = input.value.trim();
+
+      if (texto === "") {
+        alert("Digite uma tarefa.");
+        return;
+      }
+
+      let li = document.createElement("li");
+      let span = document.createElement("span");
+      span.innerText = texto;
+
+      const botaoRemover = document.createElement("button");
+      botaoRemover.innerText = "Remover";
+      botaoRemover.onclick = function () {
+        li.remove();
+      };
+
+      li.appendChild(span);
+      li.appendChild(botaoRemover);
+
+      document.getElementById("listaTarefas").appendChild(li);
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
